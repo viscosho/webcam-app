@@ -1,17 +1,13 @@
 import React, { Component } from 'react';
-import Camera from '../Camera/Camera';
+import CameraView from '../Camera/CameraView';
 import Sidebar from '../Sidebar/Sidebar';
-// import WebCam from '../../webcam';
-
-// import webcam from '../webcam';
-// import CitiesComponent from '../components/CitiesComponent';
-// import CircleComponent from '../components/CircleComponent';
-// import ImageComponent from '../components/ImageComponent';
 
 class CameraRender extends Component {
+	onListItemClick = this.onListItemClick.bind(this);
+
 	state = {
-		// webcam: WebCam(),
 		cameras: [],
+		activeSource: '',
 	};
 	componentDidMount() {
 		fetch('http://runningios.com/screamingbox/cameras.json')
@@ -22,18 +18,22 @@ class CameraRender extends Component {
 			})
 			.catch(console.log);
 	}
-	render() {
-		return (
-			<div className='max-w-6xl mx-auto grid grid-cols-2 gap-4 flex p-12 bg-gray-100 mt-10 rounded-lg shadow-xl'>
-				<div className='ml-8 pt-1 max-w-full'>
-					<div className='ml-8 pt-1 max-w-full'>
-						<Camera cameras={this.state.cameras} />
-					</div>
-				</div>
-				<div className='ml-4 pt-1 max-w-full'>
-					<h3 className='text-base text-gray-700 leading-normal text-xl text-center'>Views</h3>
 
-					<div className='ml-8 pt-1 max-w-full text-center'>
+	onListItemClick(source) {
+		this.setState({
+			activeSource: source,
+		});
+	}
+
+	render() {
+		const { activeSource } = this.state;
+		return (
+			<div className='max-w-6xl mx-auto lg:flex mb-4 gap-4 p-12 bg-gray-100 mt-10 rounded-lg shadow-xl'>
+				<main className='pt-1 w-full sm:w-full md:w-full lg:w-3/4'>
+					<CameraView activeSource={activeSource} />
+				</main>
+				<aside className='pt-1 w-full sm:w-full md:w-full lg:w-1/4'>
+					<div className='pt-1 max-w-full text-center'>
 						<ul className='flex'>
 							<li className='flex-1 mr-2'>
 								<a
@@ -56,12 +56,16 @@ class CameraRender extends Component {
 								</a>
 							</li>
 						</ul>
-						<Sidebar id='cameras' cameras={this.state.cameras} />
+						<Sidebar
+							id='cameras'
+							cameras={this.state.cameras}
+							onListItemClick={this.onListItemClick}
+						/>
 						<div id='controls' className='hidden'>
 							Control
 						</div>
 					</div>
-				</div>
+				</aside>
 			</div>
 		);
 	}
