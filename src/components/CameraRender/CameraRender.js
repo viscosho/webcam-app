@@ -42,7 +42,7 @@ class CameraRender extends Component {
 
 		//console.log(position);
 		return (
-			<div className='max-w-6xl mx-auto lg:flex mb-4 gap-4 p-12 bg-gray-100 mt-10 rounded-lg shadow-xl'>
+			<div className='max-w-6xl mx-auto lg:flex mb-4 gap-4 p-12 bg-gray-200 mt-10 rounded-lg shadow-xl'>
 				<main className='pt-1 w-full sm:w-full md:w-full lg:w-2/4'>
 					<CameraView activeSource={activeSource} position={position} />
 				</main>
@@ -50,14 +50,19 @@ class CameraRender extends Component {
 					<div className='pt-1 max-w-full text-center'>
 						<Tab.Container id='left-tabs-example'>
 							<Tabs defaultActiveKey='Camera'>
-								<Tab eventKey='Camera' title='Camera'>
+								<Tab eventKey='Camera' title='Camera' className='bg-white border border-gray-600'>
 									<ButtonList
+										className='bg-white'
 										id='cameras'
 										cameras={this.state.cameras}
 										onLocationSelect={this.onLocationSelect}
 									/>
 								</Tab>
-								<Tab eventKey='Control' title='Control'>
+								<Tab
+									eventKey='Control'
+									title='Control'
+									className='bg-white border-solid border border-gray-600'
+								>
 									<CameraControls onPositionChange={this.onPositionChange} />
 								</Tab>
 							</Tabs>

@@ -18,7 +18,7 @@ const ButtonList = ({ cameras }) => {
 					<button
 						key={id}
 						id={id}
-						className='w-full block m-3 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded'
+						className='w-full block m-3 bg-purple-500 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded'
 						onClick={() => changeCity(source)}
 					>
 						<span>{name}</span>
