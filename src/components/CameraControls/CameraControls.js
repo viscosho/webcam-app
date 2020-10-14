@@ -15,7 +15,7 @@ const CameraControls = (props) => {
 		let xPosition = mouseX - newMouseX;
 		let yPosition = (mouseY - newMouseY) * -1;
 
-		console.log(xPosition, yPosition);
+		//console.log(xPosition, yPosition);
 
 		window.WebCam.move(xPosition, yPosition);
 	};
@@ -25,7 +25,7 @@ const CameraControls = (props) => {
 	};
 
 	return (
-		<div className='flex justify-center p-4'>
+		<div className='flex justify-center p-4 cursor-container'>
 			<span
 				onMouseDown={onMouseDown}
 				onMouseUp={onMouseUp}

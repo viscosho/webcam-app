@@ -7,7 +7,6 @@ import Tab from 'react-bootstrap/Tab';
 
 class CameraRender extends Component {
 	onLocationSelect = this.onLocationSelect.bind(this);
-	onPositionChange = this.onPositionChange.bind(this);
 
 	state = {
 		cameras: [],
@@ -31,12 +30,6 @@ class CameraRender extends Component {
 		});
 	}
 
-	onPositionChange(position) {
-		this.setState({
-			position,
-		});
-	}
-
 	render() {
 		const { activeSource, position } = this.state;
 
@@ -48,9 +41,13 @@ class CameraRender extends Component {
 				</main>
 				<aside className='pt-1 w-full sm:w-full md:w-full lg:w-2/4'>
 					<div className='pt-1 max-w-full text-center'>
-						<Tab.Container id='left-tabs-example'>
+						<Tab.Container>
 							<Tabs defaultActiveKey='Camera'>
-								<Tab eventKey='Camera' title='Camera' className='bg-white border border-gray-600'>
+								<Tab
+									eventKey='Camera'
+									title='Camera'
+									className='bg-white border border-gray-600 pr-8'
+								>
 									<ButtonList
 										className='bg-white'
 										id='cameras'
@@ -63,7 +60,7 @@ class CameraRender extends Component {
 									title='Control'
 									className='bg-white border-solid border border-gray-600'
 								>
-									<CameraControls onPositionChange={this.onPositionChange} />
+									<CameraControls />
 								</Tab>
 							</Tabs>
 						</Tab.Container>
