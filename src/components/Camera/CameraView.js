@@ -7,7 +7,6 @@ class CameraView extends Component {
 		cameraView: window.WebCam.getCameraNode(),
 		defaultSource: '',
 		activeSource: '',
-		position: {},
 	};
 
 	componentDidMount() {
@@ -16,12 +15,9 @@ class CameraView extends Component {
 	}
 
 	componentDidUpdate() {
-		let { defaultSource, activeSource, position, afterPositionChange } = this.state;
+		const { activeSource } = this.state;
 
-		if (Object.keys(position).length) {
-			window.WebCam.move(position.x, position.y);
-			afterPositionChange();
-		}
+		let { defaultSource } = this.state;
 
 		if (activeSource === defaultSource) {
 			return;

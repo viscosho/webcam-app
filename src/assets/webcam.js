@@ -13,7 +13,7 @@ if (!window.WebCam) {
 	 */
 	window.WebCam = (function() {
 		var webCamContainer = document.createElement('div');
-		webCamContainer.style = 'width: 100%; height: 400px; position: relative; overflow: hidden;';
+		webCamContainer.style = 'width: 600px; height: 400px; position: relative; overflow: hidden;';
 		var cameraView = document.createElement('img');
 		cameraView.style = 'position: absolute; left: 0px; top: 0px; width: auto;';
 		cameraView.src = 'http://runningios.com/screamingbox/new-york.jpg';
@@ -82,7 +82,7 @@ if (!window.WebCam) {
 				if (cameraStorage.isAllowedY(nextY)) {
 					cameraStorage.setY(nextY);
 				} else {
-					console.log('not allowed');
+					console.log('not allowed here');
 				}
 
 				var currentX = cameraStorage.getX();

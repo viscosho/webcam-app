@@ -1,11 +1,11 @@
 import React from 'react';
-import setSource from '../../webcam';
+import setSource from '../../assets/webcam';
 
-const Sidebar = ({ cameras }) => {
+const ButtonList = ({ cameras }) => {
 	const sourceCam = window.WebCam;
 
 	const changeCity = (source) => {
-		console.log(source);
+		//console.log(source);
 		sourceCam.setSource(source);
 	};
 
@@ -28,4 +28,4 @@ const Sidebar = ({ cameras }) => {
 	);
 };
 
-export default Sidebar;
+export default ButtonList;
