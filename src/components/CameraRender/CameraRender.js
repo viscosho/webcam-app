@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import CameraView from '../Camera/CameraView';
 import CameraControls from '../CameraControls/CameraControls';
 import ButtonList from '../ButtonList/ButtonList';
-import CameraTabs from '../Tabs/Tabs';
+import Tabs from 'react-bootstrap/Tabs';
+import Tab from 'react-bootstrap/Tab';
 
 class CameraRender extends Component {
 	onLocationSelect = this.onLocationSelect.bind(this);
@@ -47,13 +48,20 @@ class CameraRender extends Component {
 				</main>
 				<aside className='pt-1 w-full sm:w-full md:w-full lg:w-2/4'>
 					<div className='pt-1 max-w-full text-center'>
-						<CameraTabs />
-						<ButtonList
-							id='cameras'
-							cameras={this.state.cameras}
-							onLocationSelect={this.onLocationSelect}
-						/>
-						<CameraControls onPositionChange={this.onPositionChange} />
+						<Tab.Container id='left-tabs-example'>
+							<Tabs defaultActiveKey='Camera'>
+								<Tab eventKey='Camera' title='Camera'>
+									<ButtonList
+										id='cameras'
+										cameras={this.state.cameras}
+										onLocationSelect={this.onLocationSelect}
+									/>
+								</Tab>
+								<Tab eventKey='Control' title='Control'>
+									<CameraControls onPositionChange={this.onPositionChange} />
+								</Tab>
+							</Tabs>
+						</Tab.Container>
 					</div>
 				</aside>
 			</div>

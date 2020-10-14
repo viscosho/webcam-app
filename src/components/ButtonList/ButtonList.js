@@ -1,4 +1,5 @@
 import React from 'react';
+// eslint-disable-next-line
 import setSource from '../../assets/webcam';
 
 const ButtonList = ({ cameras }) => {

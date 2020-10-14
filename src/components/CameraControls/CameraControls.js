@@ -1,48 +1,38 @@
-import React, { Component } from 'react';
-//import PropTypes from 'prop-types';
+import React from 'react';
 
-class CameraControls extends Component {
-	onMouseDown = this.onMouseDown.bind(this);
-	onMouseUp = this.onMouseUp.bind(this);
-
-	state = {
-		startPosition: {},
+const CameraControls = (props) => {
+	const onMouseDown = (e) => {
+		e.target.addEventListener('mousemove', onMouseMove);
 	};
 
-	onMouseDown(e) {
-		this.setState({
-			startPosition: {
-				x: e.clientX,
-				y: e.clientY,
-			},
-		});
-		//console.log(e.clientX, e.clientY);
-	}
+	const onMouseMove = (e) => {
+		let mouseX = e.clientX;
+		let mouseY = e.clientY;
 
-	onMouseUp(e) {
-		const { startPosition } = this.state;
-		const { onPositionChange } = this.props;
+		let circle = e.target.getBoundingClientRect();
+		let newMouseX = circle.x + circle.width / 2;
+		let newMouseY = circle.y + circle.height / 2;
+		let xPosition = mouseX - newMouseX;
+		let yPosition = (mouseY - newMouseY) * -1;
 
-		onPositionChange({
-			x: startPosition.x - e.clientX,
-			y: startPosition.y - e.clientY,
-		});
-		//console.log(e.clientX, e.clientY);
+		console.log(xPosition, yPosition);
 
-		window.WebCam.move(e.clientX);
-	}
+		window.WebCam.move(xPosition, yPosition);
+	};
 
-	render() {
-		return (
-			<div className='flex justify-center'>
-				<span
-					onMouseDown={this.onMouseDown}
-					onMouseUp={this.onMouseUp}
-					className='circle-control block text-center'
-				/>
-			</div>
-		);
-	}
-}
+	const onMouseUp = (e) => {
+		e.target.removeEventListener('mousemove', onMouseMove);
+	};
+
+	return (
+		<div className='flex justify-center p-4'>
+			<span
+				onMouseDown={onMouseDown}
+				onMouseUp={onMouseUp}
+				className='circle-control block text-center'
+			/>
+		</div>
+	);
+};
 
 export default CameraControls;

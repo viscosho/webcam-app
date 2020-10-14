@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-export default class HeaderLayout extends Component {
+class HeaderLayout extends Component {
 	render() {
 		return (
 			<header className='App-header flex mb-4'>
@@ -13,3 +13,4 @@ export default class HeaderLayout extends Component {
 		);
 	}
 }
+export default HeaderLayout;
